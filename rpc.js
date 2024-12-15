@@ -1,4 +1,5 @@
 let computerChoice;
+let userChoice;
 
 function getComputerChoice(){
     let rng = Math.floor(Math.random() * 3);
@@ -12,4 +13,15 @@ function getComputerChoice(){
     console.log(computerChoice);
 }
 
+function getUserChoice(){
+    userChoice = prompt("Type in 'Rock', 'Paper' or 'Scissors'", "").toLowerCase();
+
+    if(userChoice !== "rock" || userChoice !== "paper" || userChoice !== "scissors"){
+        userChoice = "scissors";  // for some users it's really hard to type in "scissors"
+    }
+
+    console.log(userChoice);
+}
+
 getComputerChoice();
+getUserChoice();
