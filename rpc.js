@@ -3,7 +3,7 @@ let userChoice;
 let computerScore = 0;
 let userScore = 0;
 let isDraw = false;
-let hasWon = false; 
+let hasWon = false;
 
 function getComputerChoice(){
     let rng = Math.floor(Math.random() * 3);
@@ -30,7 +30,7 @@ function getUserChoice(){
     console.log(userChoice);
 }
 
-function decideWinner(){
+function decideRoundWinner(){
     if(userChoice === computerChoice){
         isDraw = true;
     }else if(userChoice === "rock" && computerChoice === "scissors"){
@@ -42,6 +42,9 @@ function decideWinner(){
     }
 
     increaseScore();
+    
+    isDraw = false;
+    hasWon = false;
 }
 
 function increaseScore(){
@@ -58,8 +61,38 @@ function increaseScore(){
     }
 }
 
-getComputerChoice();
-getUserChoice();
-decideWinner();
+function showScore(){
+    console.log(`The score is: ${userScore} : ${computerScore}`);
+}
+
+function playRound(){
+    getComputerChoice();
+    getUserChoice();
+    decideRoundWinner();
+    showScore();
+}
+
+function decideGameWinner(){
+    if(userScore > computerScore){
+        console.log("Congratulations!!! You won!");
+    }else if(computerScore > userScore){
+        console.log("What a pity. You lose.");
+    }else{
+        console.log("It's a total draw.");
+    }
+}
+
+function playGame(){
+    for(let i = 0; i < 5; i++){
+        playRound();
+    }
+    decideGameWinner();
+}
+
+playGame();
+
+
+
+
 
 
