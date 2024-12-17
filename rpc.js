@@ -5,14 +5,16 @@ let userScore = 0;
 let isDraw = false;
 let hasWon = false;
 
-const rockBtn = document.querySelector("button");
-const scissorsBtn = document.querySelectorAll("button");
-const paperBtn = document.querySelector("button");
+const rockBtn = document.querySelector("#rockBtn");
+const paperBtn = document.querySelector("#paperBtn");
+const scissorsBtn = document.querySelector("#scissorsBtn");
 
 const bod = document.querySelector("body");
 const resultDiv = document.querySelector("div");
+
 const resultPara = document.createElement("p");
 const scorePara = document.createElement("p");
+const h2 = document.createElement("h2");
 
 function getComputerChoice(){
     let rng = Math.floor(Math.random() * 3);
@@ -23,20 +25,7 @@ function getComputerChoice(){
         default: computerChoice = "scissors"; break;
     }
 
-    //console.log(computerChoice);
-}
-
-function getUserChoice(){
-    userChoice = prompt("Type in 'Rock', 'Paper' or 'Scissors'", "").toLowerCase();
-
-    switch(userChoice){
-        case "rock":
-        case "paper":
-        case "scissors": break;
-        default: userChoice = "scissors"; break; // for some users it's really hard to type in "scissors"
-    }
-
-    //console.log(userChoice);
+    console.log(computerChoice);
 }
 
 function decideRoundWinner(){
@@ -59,8 +48,6 @@ function decideRoundWinner(){
 function increaseScore(){
     if(isDraw){
         resultPara.textContent = `Draw. You both used ${userChoice}`;
-        computerScore ++;
-        userScore ++;
     }else if(hasWon){
         resultPara.textContent = `You won! By ${userChoice} and ${computerChoice}`;
         userScore ++;
@@ -74,11 +61,32 @@ function showScore(){
     scorePara.textContent = `The score is: ${userScore} : ${computerScore}`;
 }
 
+function decideGameWinner(){
+        resultPara.textContent = "";
+
+        if(userScore > computerScore){
+            h2.textContent = "Congratulations!!! You won!";
+        }else if(computerScore > userScore){
+            h2.textContent = "What a pity. You lose.";
+        }
+        resultDiv.insertBefore(h2, scorePara);
+}
+
+function stopGame(){
+    rockBtn.disabled = true;
+    paperBtn.disabled = true;
+    scissorsBtn.disabled = true;
+}
+
 function playRound(){
     getComputerChoice();
-    //getUserChoice();
     decideRoundWinner();
     showScore();
+
+    if(userScore === 5 || computerScore === 5){
+        decideGameWinner();
+        stopGame();
+    }
 }
 
 bod.addEventListener("click", (event) => 
@@ -93,28 +101,6 @@ bod.addEventListener("click", (event) =>
 
 resultDiv.appendChild(resultPara);
 resultDiv.appendChild(scorePara);
-
-/*
-function decideGameWinner(){
-    if(userScore > computerScore){
-        console.log("Congratulations!!! You won!");
-    }else if(computerScore > userScore){
-        console.log("What a pity. You lose.");
-    }else{
-        console.log("It's a total draw.");
-    }
-}*/
-/*
-function playGame(){
-    for(let i = 0; i < 5; i++){
-        playRound();
-    }
-    decideGameWinner();
-}*/
-
-//playGame();
-
-
 
 
 
