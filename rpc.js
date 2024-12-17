@@ -8,7 +8,11 @@ let hasWon = false;
 const rockBtn = document.querySelector("button");
 const scissorsBtn = document.querySelectorAll("button");
 const paperBtn = document.querySelector("button");
+
 const bod = document.querySelector("body");
+const resultDiv = document.querySelector("div");
+const resultPara = document.createElement("p");
+const scorePara = document.createElement("p");
 
 function getComputerChoice(){
     let rng = Math.floor(Math.random() * 3);
@@ -54,20 +58,20 @@ function decideRoundWinner(){
 
 function increaseScore(){
     if(isDraw){
-        console.log(`Draw. You both used ${userChoice}`);
+        resultPara.textContent = `Draw. You both used ${userChoice}`;
         computerScore ++;
         userScore ++;
     }else if(hasWon){
-        console.log(`You won! By ${userChoice} and ${computerChoice}`);
+        resultPara.textContent = `You won! By ${userChoice} and ${computerChoice}`;
         userScore ++;
     }else{
-        console.log(`You lose. By ${userChoice} and ${computerChoice}`);
+        resultPara.textContent = `You lose. By ${userChoice} and ${computerChoice}`;
         computerScore ++;
     }
 }
 
 function showScore(){
-    console.log(`The score is: ${userScore} : ${computerScore}`);
+    scorePara.textContent = `The score is: ${userScore} : ${computerScore}`;
 }
 
 function playRound(){
@@ -81,11 +85,14 @@ bod.addEventListener("click", (event) =>
     {
         switch(event.target.id)
         {
-        case "rockBtn": userChoice = "rock"; playRound(); break;
-        case "paperBtn": userChoice = "paper"; playRound(); break;
-        case "scissorsBtn": userChoice = "scissors"; playRound(); break;
+            case "rockBtn": userChoice = "rock"; playRound(); break;
+            case "paperBtn": userChoice = "paper"; playRound(); break;
+            case "scissorsBtn": userChoice = "scissors"; playRound(); break;
         }
 });
+
+resultDiv.appendChild(resultPara);
+resultDiv.appendChild(scorePara);
 
 /*
 function decideGameWinner(){
