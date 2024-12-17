@@ -9,8 +9,8 @@ const rockBtn = document.querySelector("#rockBtn");
 const paperBtn = document.querySelector("#paperBtn");
 const scissorsBtn = document.querySelector("#scissorsBtn");
 
-const bod = document.querySelector("body");
-const resultDiv = document.querySelector("div");
+const buttons = document.querySelector(".buttons");
+const resultDiv = document.querySelector(".result");
 
 const resultPara = document.createElement("p");
 const scorePara = document.createElement("p");
@@ -24,8 +24,6 @@ function getComputerChoice(){
         case 1: computerChoice = "paper"; break;
         default: computerChoice = "scissors"; break;
     }
-
-    console.log(computerChoice);
 }
 
 function decideRoundWinner(){
@@ -52,13 +50,13 @@ function increaseScore(){
         resultPara.textContent = `You won! By ${userChoice} and ${computerChoice}`;
         userScore ++;
     }else{
-        resultPara.textContent = `You lose. By ${userChoice} and ${computerChoice}`;
+        resultPara.textContent = `You lost. By ${userChoice} and ${computerChoice}`;
         computerScore ++;
     }
 }
 
 function showScore(){
-    scorePara.textContent = `The score is: ${userScore} : ${computerScore}`;
+    scorePara.textContent = `The score is ${userScore} : ${computerScore}`;
 }
 
 function decideGameWinner(){
@@ -67,7 +65,7 @@ function decideGameWinner(){
         if(userScore > computerScore){
             h2.textContent = "Congratulations!!! You won!";
         }else if(computerScore > userScore){
-            h2.textContent = "What a pity. You lose.";
+            h2.textContent = "What a pity. You lost.";
         }
         resultDiv.insertBefore(h2, scorePara);
 }
@@ -89,7 +87,7 @@ function playRound(){
     }
 }
 
-bod.addEventListener("click", (event) => 
+buttons.addEventListener("click", (event) => 
     {
         switch(event.target.id)
         {

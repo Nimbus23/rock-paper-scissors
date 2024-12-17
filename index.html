@@ -4,16 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors Game</title>
+    <style>
+        *{
+            color: #D7C49EFF;
+            background-color: #343148FF;
+            text-align: center;
+        }
+
+        body{
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .buttons{
+            display: flex;
+            justify-content: center;            
+            padding: 12px;
+            gap: 18px;
+        }
+
+        button{
+            padding: 12px;
+            font-size: 24px;
+        }
+
+        h1{
+            font-size: 48px;
+        }
+
+        h2{
+            font-size: 32px;           
+        }
+
+        p{
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
-
     <h1>Choose what to throw:</h1>
-    
-    <button id="rockBtn">Rock</button>
-    <button id="paperBtn">Paper</button>
-    <button id="scissorsBtn">Scissors</button>
-
-    <div></div>
+    <div class="buttons">        
+        <button id="rockBtn">Rock</button>
+        <button id="paperBtn">Paper</button>
+        <button id="scissorsBtn">Scissors</button>
+    </div>
+    <div class="result"></div>
 
     <script src="rpc.js"></script>
 </body>
