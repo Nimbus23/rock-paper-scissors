@@ -5,6 +5,11 @@ let userScore = 0;
 let isDraw = false;
 let hasWon = false;
 
+const rockBtn = document.querySelector("button");
+const scissorsBtn = document.querySelectorAll("button");
+const paperBtn = document.querySelector("button");
+const bod = document.querySelector("body");
+
 function getComputerChoice(){
     let rng = Math.floor(Math.random() * 3);
 
@@ -14,7 +19,7 @@ function getComputerChoice(){
         default: computerChoice = "scissors"; break;
     }
 
-    console.log(computerChoice);
+    //console.log(computerChoice);
 }
 
 function getUserChoice(){
@@ -27,7 +32,7 @@ function getUserChoice(){
         default: userChoice = "scissors"; break; // for some users it's really hard to type in "scissors"
     }
 
-    console.log(userChoice);
+    //console.log(userChoice);
 }
 
 function decideRoundWinner(){
@@ -67,11 +72,22 @@ function showScore(){
 
 function playRound(){
     getComputerChoice();
-    getUserChoice();
+    //getUserChoice();
     decideRoundWinner();
     showScore();
 }
 
+bod.addEventListener("click", (event) => 
+    {
+        switch(event.target.id)
+        {
+        case "rockBtn": userChoice = "rock"; playRound(); break;
+        case "paperBtn": userChoice = "paper"; playRound(); break;
+        case "scissorsBtn": userChoice = "scissors"; playRound(); break;
+        }
+});
+
+/*
 function decideGameWinner(){
     if(userScore > computerScore){
         console.log("Congratulations!!! You won!");
@@ -80,16 +96,16 @@ function decideGameWinner(){
     }else{
         console.log("It's a total draw.");
     }
-}
-
+}*/
+/*
 function playGame(){
     for(let i = 0; i < 5; i++){
         playRound();
     }
     decideGameWinner();
-}
+}*/
 
-playGame();
+//playGame();
 
 
 
